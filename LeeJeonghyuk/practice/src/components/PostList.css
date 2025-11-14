@@ -1,0 +1,115 @@
+/* 전체 레이아웃 */
+.App {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  font-family: "Pretendard", sans-serif;
+  color: #333;
+  background: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 6px 16x rgba(0,0,0,0.05);
+}
+
+
+/* 게시글 목록 */
+.post-list {
+  margin: 20px;
+  border-top: 3px solid #e2e8f0;
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+/* 게시글 아이템 */
+.post-item {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 15px;
+  transition: 0.2s ease;
+}
+
+.post-item:hover {
+  transform: translateY(-2px);
+  border-color: #888;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.post-item h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #222;
+  font-weight: 600;
+}
+
+.post-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* 버튼 */
+button {
+  background: #4b8df8;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #357ae8;
+}
+
+button:nth-of-type(2) {
+  background: #f87171; /* 삭제 버튼 빨간색 */
+}
+
+button:nth-of-type(2):hover {
+  background: #ef4444;
+}
+
+/* 입력창 (수정 모드) */
+.post-item input {
+  width: 80%;
+  padding: 6px;
+  margin-right: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* 새 글 작성 폼 */
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid #c7d2fe;
+  background: #eef2ff;
+  border-radius: 14px;
+}
+
+.post-form input,
+.post-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 14px;
+  resize: none;
+}
+
+.post-form button {
+  align-self: flex-end;
+  width: 100px;
+  background: #10b981;
+}
+
+.post-form button:hover {
+  background: #059669;
+}
