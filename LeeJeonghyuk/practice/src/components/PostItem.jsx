@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 export default function PostItem({ post, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editTitle, setEditTitle] = useState(post.title);
+  const [editUsername, setEditUsername] = useState(post.username);
 
   const handleSave = () => {
-    onUpdate({ ...post, title: editTitle });
+    onUpdate({ ...post, username: editUsername });
     setIsEditing(false);
   };
 
@@ -14,15 +14,16 @@ export default function PostItem({ post, onUpdate, onDelete }) {
       {isEditing ? (
         <>
           <input
-            value={editTitle}
-            onChange={(e) => setEditTitle(e.target.value)}
+            value={editUsername}
+            onChange={(e) => setEditUsername(e.target.value)}
           />
           <button onClick={handleSave}>저장</button>
+          <button onClick={() => setIsEditing(false)}>취소</button>
         </>
       ) : (
         <>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
+          <h3>{post.username}</h3>
+          <p>{post.email}</p>
           <button onClick={() => setIsEditing(true)}>수정</button>
           <button onClick={() => onDelete(post.id)}>삭제</button>
         </>

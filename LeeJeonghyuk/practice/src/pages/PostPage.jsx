@@ -6,40 +6,48 @@ import PostForm from "../components/PostForm";
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = "https://jsonplaceholder.typicode.com";
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/posts?_limit=5`)
+      .get(`${API_URL}/users`)
       .then((res) => setPosts(res.data))
       .catch((err) => console.error(err));
-  }, [API_URL]);
+  }, []);
 
   const addPost = (newPost) => {
     axios
-      .post(`${API_URL}/posts`, newPost)
-      .then((res) => setPosts((prev) => [res.data, ...prev]));
+      .post(`${API_URL}/users`, {
+        username: newPost.username,
+        email: newPost.email,
+      })
+      .then((res) => setPosts((prev) => [res.data, ...prev]))
+      .catch((err) => console.error(err));
   };
 
   const updatePost = (updatedPost) => {
     axios
-      .patch(`${API_URL}/posts/${updatedPost.id}`, updatedPost)
+      .patch(`${API_URL}/users/${updatedPost.id}`, {
+        username: updatedPost.username,
+      })
       .then((res) =>
         setPosts((prev) =>
-          prev.map((p) => (p.id === updatedPost.id ? res.data : p))
+          prev.map((p) => (p.id === updatedPost.id ? { ...p, ...res.data } : p))
         )
-      );
+      )
+      .catch((err) => console.error(err));
   };
 
   const deletePost = (id) => {
     axios
-      .delete(`${API_URL}/posts/${id}`)
-      .then(() => setPosts((prev) => prev.filter((p) => p.id !== id)));
+      .delete(`${API_URL}/users/${id}`)
+      .then(() => setPosts((prev) => prev.filter((p) => p.id !== id)))
+      .catch((err) => console.error(err));
   };
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>게시글 관리 페이지</h1>
+      <h1 style={{ textAlign: "center" }}>유저 프로필 관리</h1>
       <PostForm onAdd={addPost} />
       <PostList posts={posts} onUpdate={updatePost} onDelete={deletePost} />
     </div>
